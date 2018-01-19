@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+
+	<body>
+		<h1>Users</h1>
+
+		<table cellpadding="10">
+			<tr>
+				<th>id</th>
+				<th>Full Name</th> 
+				<th>Email Address</th>
+				<th>Created At</th>
+				<th>Actions</th>
+			</tr>
+
+			{% for user in users %}
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.first_name}} {{user.last_name}}</td> 
+					<td>{{user.email_address}}</td>
+					<td>{{user.created_at}}</td>
+					<td>
+						<a href="/show/{{user.id}}">Show</a>&nbsp;&nbsp;
+						<a href="/edit/{{user.id}}">Edit</a>&nbsp;&nbsp;
+						<a href="/delete/{{user.id}}">Delete</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<br />
+
+		<a href="/new">Add a new user</a>
+	</body>
+</html>

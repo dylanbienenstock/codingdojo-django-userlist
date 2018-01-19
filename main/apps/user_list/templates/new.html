@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+
+	<body>
+		<h1>Add a new user</h1>
+
+		<form action="/new/submit" method="post">
+			{% csrf_token %}
+
+			<p>First name</p>
+			<input type="text" name="first_name">
+			
+			<p>Last name</p>
+			<input type="text" name="last_name">
+			
+			<p>Email address</p>
+			<input type="text" name="email_address">
+
+			<br /><br />
+
+			<input type="submit" value="Create">
+		</form>
+
+		<br />
+
+		<a href="/">&larr;Go back</a>
+
+		<br /><br />
+
+		{% for error in errors %}
+			<p>{{error}}</p>
+		{% endfor %}
+	</body>
+</html>

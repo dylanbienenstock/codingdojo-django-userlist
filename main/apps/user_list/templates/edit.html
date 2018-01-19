@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		{% load static %}
+
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+
+	<body>
+		<h1>Editing User #{{user.id}}</h1>
+
+		<form action="/edit/{{user.id}}/submit" method="post">
+			{% csrf_token %}
+
+			<p>First name</p>
+			<input type="text" name="first_name" value="{{user.first_name}}">
+			
+			<p>Last name</p>
+			<input type="text" name="last_name" value="{{user.last_name}}">
+			
+			<p>Email address</p>
+			<input type="text" name="email_address" value="{{user.email_address}}">
+
+			<br /><br />
+
+			<input type="submit" value="Update">
+		</form>
+
+		<br />
+
+		<a href="/">&larr;Go back</a>
+
+		<br /><br />
+
+		{% for error in errors %}
+			<p>{{error}}</p>
+		{% endfor %}
+	</body>
+</html>
